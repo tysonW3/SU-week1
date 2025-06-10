@@ -27,7 +27,7 @@ function MapView() {
 
   return (
     <section style={{ padding: '2rem' }}>
-      <h3 style={{ textAlign: 'center' }}>🗺️ Your Location</h3>
+      <h3 style={{ textAlign: 'center' }}>Your Location</h3>
       {position ? (
         <MapContainer
           center={position}

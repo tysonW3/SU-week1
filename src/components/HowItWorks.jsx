@@ -1,8 +1,8 @@
 function HowItWorks() {
   const steps = [
-    "📍 Detect your location",
-    "🔧 Show nearby shops",
-    "🛠️ Get help fast",
+    "Detect your location",
+    "Show nearby shops",
+    "Get help fast",
   ];
 
   return (

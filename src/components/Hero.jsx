@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 function Hero() {
+  const navigate = useNavigate(); 
+
   return (
     <section style={{
       display: 'flex',
@@ -14,15 +18,18 @@ function Hero() {
       <p style={{ fontSize: '1.2rem', marginBottom: '2rem', maxWidth: '600px' }}>
         Instantly locate nearby repair shops and mechanics when you're stuck on the road.
       </p>
-      <button style={{
-        padding: '0.75rem 1.5rem',
-        fontSize: '1rem',
-        backgroundColor: '#2563eb',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '0.5rem',
-        cursor: 'pointer'
-      }}>
+      <button
+        onClick={() => navigate('/find')} 
+        style={{
+          padding: '0.75rem 1.5rem',
+          fontSize: '1rem',
+          backgroundColor: '#2563eb',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '0.5rem',
+          cursor: 'pointer'
+        }}
+      >
         Find Nearby Repair Shops
       </button>
     </section>
