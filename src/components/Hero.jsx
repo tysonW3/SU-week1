@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 function Hero() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   return (
     <section style={{
@@ -11,15 +11,26 @@ function Hero() {
       alignItems: 'center',
       minHeight: '80vh',
       padding: '2rem',
-      background: '#f3f4f6',
-      textAlign: 'center'
+      textAlign: 'center',
+      color: '#fff',
+      backgroundImage: 'url("/semi_wallpaper.jpg")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
     }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Stranded? Find Help Fast.</h2>
-      <p style={{ fontSize: '1.2rem', marginBottom: '2rem', maxWidth: '600px' }}>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
+        Stranded? Find Help Fast.
+      </h2>
+      <p style={{
+        fontSize: '1.2rem',
+        marginBottom: '2rem',
+        maxWidth: '600px',
+        textShadow: '0 1px 3px rgba(0,0,0,0.5)'
+      }}>
         Instantly locate nearby repair shops and mechanics when you're stuck on the road.
       </p>
       <button
-        onClick={() => navigate('/find')} 
+        onClick={() => navigate('/find')}
         style={{
           padding: '0.75rem 1.5rem',
           fontSize: '1rem',
