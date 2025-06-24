@@ -3,7 +3,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import FindShop from './pages/FindShop';
-import SubmitShop from './pages/SubmitShop';
 import About from './pages/About';
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/find" element={<FindShop />} />
-          <Route path="/submit" element={<SubmitShop />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>
