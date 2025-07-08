@@ -9,7 +9,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-function MapView() {
+function MapView({ isDark }) {
   const [position, setPosition] = useState(null);
   const [nearbyShops, setNearbyShops] = useState([]);
   const [radiusMiles, setRadiusMiles] = useState(20); // in miles
@@ -152,7 +152,8 @@ function MapView() {
           </MapContainer>
 
           <div style={{
-            backgroundColor: '#f9f9f9',
+            backgroundColor: isDark ? '#2d3748' : '#f9f9f9',
+            color: isDark ? '#f9f9f9' : '#111',
             border: '1px solid #ddd',
             padding: '1rem',
             borderRadius: '0.5rem'
