@@ -13,6 +13,8 @@ function MapView() {
   const [position, setPosition] = useState(null);
   const [nearbyShops, setNearbyShops] = useState([]);
   const [radiusMiles, setRadiusMiles] = useState(20); // in miles
+  const types = ['Diesel', 'Trailer', 'Towing', 'General'];
+  const [selectedType, setSelectedType] = useState('All');
 
   async function fetchMechanicsNearby(lat, lon) {
     const radiusInMeters = radiusMiles * 1609.34;
@@ -39,6 +41,7 @@ function MapView() {
         name: el.tags.name || "Unnamed Shop",
         lat: el.lat,
         lon: el.lon,
+        type: types[Math.floor(Math.random() * types.length)] // random type for now
       }));
     } catch (err) {
       console.error('Failed to fetch Overpass data:', err);
@@ -67,6 +70,11 @@ function MapView() {
     });
   }, [position, radiusMiles]);
 
+  const filteredShops = selectedType === 'All'
+  ? nearbyShops
+  : nearbyShops.filter(shop => shop.type === selectedType);
+
+
   return (
     <section style={{ padding: '2rem' }}>
       <h3 style={{ textAlign: 'center' }}>Your Location & Nearby Mechanics</h3>
@@ -85,6 +93,42 @@ function MapView() {
             />
             <span style={{ marginLeft: '0.5rem' }}>{radiusMiles} miles</span>
           </div>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: '1.5rem 0',
+            gap: '0.5rem',
+            flexWrap: 'wrap'
+          }}>
+            <label style={{
+              fontSize: '1rem',
+              fontWeight: '500',
+              color: '#333'
+            }}>
+              Filter by Service:
+            </label>
+            <select
+              value={selectedType}
+              onChange={(e) => setSelectedType(e.target.value)}
+              style={{
+                padding: '0.5rem 1rem',
+                fontSize: '1rem',
+                borderRadius: '6px',
+                border: '1px solid #ccc',
+                backgroundColor: '#f9f9f9',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
+                cursor: 'pointer'
+              }}
+            >
+              <option value="All">All Services</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Trailer">Trailer</option>
+              <option value="Towing">Towing</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+
 
           <MapContainer
             center={position}
@@ -100,7 +144,7 @@ function MapView() {
               <Popup>You are here</Popup>
             </Marker>
 
-            {nearbyShops.map((shop, index) => (
+            {filteredShops.map((shop, index) => (
               <Marker key={index} position={[shop.lat, shop.lon]}>
                 <Popup>{shop.name}</Popup>
               </Marker>
@@ -123,7 +167,7 @@ function MapView() {
                 gap: '1rem',
                 marginTop: '1rem'
               }}>
-                {nearbyShops.map((shop, index) => (
+                {filteredShops.map((shop, index) => (
                   <div key={index} style={{
                     border: '1px solid #ddd',
                     borderRadius: '8px',
