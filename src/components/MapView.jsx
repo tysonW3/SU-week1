@@ -132,6 +132,24 @@ function MapView() {
                     boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
                   }}>
                     <h4 style={{ marginBottom: '0.5rem' }}>{shop.name}</h4>
+                    <a
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${shop.lat},${shop.lon}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-block',
+                        marginTop: '0.5rem',
+                        padding: '0.4rem 0.8rem',
+                        fontSize: '0.9rem',
+                        backgroundColor: '#2563eb',
+                        color: '#fff',
+                        textDecoration: 'none',
+                        borderRadius: '4px'
+                      }}
+                    >
+                      Get Directions
+                    </a>
+
                   </div>
                 ))}
               </div>
