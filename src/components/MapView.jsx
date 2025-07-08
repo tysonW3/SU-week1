@@ -15,6 +15,18 @@ function MapView({ isDark }) {
   const [radiusMiles, setRadiusMiles] = useState(20); // in miles
   const types = ['Diesel', 'Trailer', 'Towing', 'General'];
   const [selectedType, setSelectedType] = useState('All');
+  const [trustedShops, setTrustedShops] = useState([]);
+
+
+  function toggleTrusted(shopName) {
+    setTrustedShops(prev => 
+      prev.includes(shopName)
+        ? prev.filter(name => name !== shopName)
+        : [...prev, shopName]
+    );
+  }
+
+
 
   async function fetchMechanicsNearby(lat, lon) {
     const radiusInMeters = radiusMiles * 1609.34;
@@ -151,13 +163,14 @@ function MapView({ isDark }) {
             ))}
           </MapContainer>
 
-          <div style={{
-            backgroundColor: isDark ? '#2d3748' : '#f9f9f9',
-            color: isDark ? '#f9f9f9' : '#111',
-            border: '1px solid #ddd',
-            padding: '1rem',
-            borderRadius: '0.5rem'
-          }}>
+            <div style={{
+              backgroundColor: isDark ? '#2d3748' : '#f9f9f9',
+              color: isDark ? '#f9f9f9' : '#111',
+              border: isDark ? '1px solid #444' : '1px solid #ddd',
+              padding: '1rem',
+              borderRadius: '0.5rem'
+            }}>
+
             <h4>Nearby Shops:</h4>
             {nearbyShops.length === 0 ? (
               <p>No shops found within {radiusMiles} miles.</p>
@@ -170,11 +183,12 @@ function MapView({ isDark }) {
               }}>
                 {filteredShops.map((shop, index) => (
                   <div key={index} style={{
-                    border: '1px solid #ddd',
+                    border: isDark ? '1px solid #444' : '1px solid #ddd',
                     borderRadius: '8px',
                     padding: '1rem',
-                    backgroundColor: '#fff',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
+                    backgroundColor: isDark ? '#2d3748' : '#fff',
+                    color: isDark ? '#f9f9f9' : '#111',
+                    boxShadow: isDark ? '0 2px 6px rgba(255,255,255,0.05)' : '0 2px 6px rgba(0,0,0,0.05)'
                   }}>
                     <h4 style={{ marginBottom: '0.5rem' }}>{shop.name}</h4>
                     <a
@@ -195,8 +209,25 @@ function MapView({ isDark }) {
                       Get Directions
                     </a>
 
+                    <button
+                      onClick={() => toggleTrusted(shop.name)}
+                      style={{
+                        marginTop: '0.5rem',
+                        marginLeft: '0.5rem',
+                        padding: '0.4rem 0.8rem',
+                        fontSize: '0.9rem',
+                        backgroundColor: trustedShops.includes(shop.name) ? '#10b981' : '#d1d5db',
+                        color: trustedShops.includes(shop.name) ? '#fff' : '#111',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {trustedShops.includes(shop.name) ? '✅ Trusted' : 'Mark as Trusted'}
+                    </button>
                   </div>
                 ))}
+
               </div>
             )}
           </div>
