@@ -12,6 +12,7 @@ function App() {
 
   return (
     <div style={{
+      fontFamily: 'Poppins, sans-serif',
       backgroundColor: isDark ? '#1f2937' : '#fff',
       color: isDark ? '#f9f9f9' : '#111',
       minHeight: '100vh',

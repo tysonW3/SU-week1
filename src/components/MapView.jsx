@@ -15,7 +15,11 @@ function MapView({ isDark }) {
   const [radiusMiles, setRadiusMiles] = useState(20); // in miles
   const types = ['Diesel', 'Trailer', 'Towing', 'General'];
   const [selectedType, setSelectedType] = useState('All');
-  const [trustedShops, setTrustedShops] = useState([]);
+
+  const [trustedShops, setTrustedShops] = useState(() => {
+    const stored = localStorage.getItem('trustedShops');
+    return stored ? JSON.parse(stored) : [];
+  });
 
 
   function toggleTrusted(shopName) {
@@ -25,6 +29,10 @@ function MapView({ isDark }) {
         : [...prev, shopName]
     );
   }
+
+  useEffect(() => {
+  localStorage.setItem('trustedShops', JSON.stringify(trustedShops));
+  }, [trustedShops]);
 
 
 
@@ -93,53 +101,55 @@ function MapView({ isDark }) {
 
       {position ? (
         <>
-          <div style={{ marginBottom: '1rem', textAlign: 'center' }}>
-            <label style={{ marginRight: '0.5rem' }}>Search radius:</label>
-            <input
-              type="range"
-              min="1"
-              max="50"
-              value={radiusMiles}
-              onChange={(e) => setRadiusMiles(Number(e.target.value))}
-              style={{ width: '200px' }}
-            />
-            <span style={{ marginLeft: '0.5rem' }}>{radiusMiles} miles</span>
-          </div>
           <div style={{
+            position: 'sticky',
+            top: '0',
+            zIndex: '10',
+            backgroundColor: isDark ? '#1f2937' : '#fff',
+            padding: '1rem',
+            borderRadius: '8px',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+            marginBottom: '1rem',
             display: 'flex',
+            flexWrap: 'wrap',
+            gap: '1rem',
             justifyContent: 'center',
-            alignItems: 'center',
-            margin: '1.5rem 0',
-            gap: '0.5rem',
-            flexWrap: 'wrap'
+            alignItems: 'center'
           }}>
-            <label style={{
-              fontSize: '1rem',
-              fontWeight: '500',
-              color: '#333'
-            }}>
-              Filter by Service:
-            </label>
-            <select
-              value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value)}
-              style={{
-                padding: '0.5rem 1rem',
-                fontSize: '1rem',
-                borderRadius: '6px',
-                border: '1px solid #ccc',
-                backgroundColor: '#f9f9f9',
-                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
-                cursor: 'pointer'
-              }}
-            >
-              <option value="All">All Services</option>
-              <option value="Diesel">Diesel</option>
-              <option value="Trailer">Trailer</option>
-              <option value="Towing">Towing</option>
-              <option value="General">General</option>
-            </select>
+            <div>
+              <label style={{ marginRight: '0.5rem' }}>Search radius:</label>
+              <input
+                type="range"
+                min="1"
+                max="50"
+                value={radiusMiles}
+                onChange={(e) => setRadiusMiles(Number(e.target.value))}
+                style={{ width: '150px' }}
+              />
+              <span style={{ marginLeft: '0.5rem' }}>{radiusMiles} miles</span>
+            </div>
+            <div>
+              <label style={{ marginRight: '0.5rem' }}>Filter by Service:</label>
+              <select
+                value={selectedType}
+                onChange={(e) => setSelectedType(e.target.value)}
+                style={{
+                  padding: '0.4rem 0.6rem',
+                  borderRadius: '6px',
+                  border: '1px solid #ccc',
+                  backgroundColor: isDark ? '#334155' : '#f9f9f9',
+                  color: isDark ? '#f9f9f9' : '#111'
+                }}
+              >
+                <option value="All">All</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Trailer">Trailer</option>
+                <option value="Towing">Towing</option>
+                <option value="General">General</option>
+              </select>
+            </div>
           </div>
+
 
 
           <MapContainer
