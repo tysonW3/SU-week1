@@ -19,35 +19,16 @@ function Navbar() {
 
       {/* Nav Links */}
       <div style={{ display: 'flex', gap: '1.5rem' }}>
-        <Link
-          to="/"
-          style={{
-            color: '#fff',
-            textDecoration: 'none',
-            fontWeight: '500',
-            position: 'relative'
-          }}
-        >
+        <Link to="/" style={{ color: '#fff', textDecoration: 'none', fontWeight: '500' }}>
           Home
         </Link>
-        <Link
-          to="/find"
-          style={{
-            color: '#fff',
-            textDecoration: 'none',
-            fontWeight: '500'
-          }}
-        >
+        <Link to="/find" style={{ color: '#fff', textDecoration: 'none', fontWeight: '500' }}>
           Find a Shop
         </Link>
-        <Link
-          to="/about"
-          style={{
-            color: '#fff',
-            textDecoration: 'none',
-            fontWeight: '500'
-          }}
-        >
+        <Link to="/diy" style={{ color: '#fff', textDecoration: 'none', fontWeight: '500' }}>
+          DIY Fixes
+        </Link>
+        <Link to="/about" style={{ color: '#fff', textDecoration: 'none', fontWeight: '500' }}>
           About
         </Link>
       </div>

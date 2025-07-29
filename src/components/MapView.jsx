@@ -216,11 +216,19 @@ function MapView({ isDark }) {
                       <textarea name="review" placeholder="Write a review..." rows="2"
                         style={{ width: '100%', marginTop: '0.5rem' }}></textarea>
                       <button type="submit" style={{
-                        marginTop: '0.3rem', padding: '0.4rem 0.8rem',
-                        fontSize: '0.9rem', backgroundColor: '#2563eb',
-                        color: '#fff', border: 'none', borderRadius: '4px',
-                        cursor: 'pointer'
-                      }}>Submit Review</button>
+                        marginTop: '0.3rem',
+                        padding: '0.5rem 0.8rem',
+                        fontSize: '0.9rem',
+                        backgroundColor: '#f97316',   
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        width: '100%'             
+                      }}>
+                        Submit Review
+                      </button>
+
                     </form>
                   </div>
                 ))}

@@ -6,6 +6,8 @@ import DarkModeToggle from './components/DarkModeToggle';
 import Home from './pages/Home';
 import FindShop from './pages/FindShop';
 import About from './pages/About';
+import DIYFixes from "./pages/DIYFixes";
+
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -24,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/find" element={<FindShop isDark={isDark} />} />
+          <Route path="/diy" element={<DIYFixes />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>
