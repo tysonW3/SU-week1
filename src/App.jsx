@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import FindShop from './pages/FindShop';
 import About from './pages/About';
 import DIYFixes from "./pages/DIYFixes";
-
+import Favorites from "./pages/Favorites";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -28,6 +28,7 @@ function App() {
           <Route path="/find" element={<FindShop isDark={isDark} />} />
           <Route path="/diy" element={<DIYFixes />} />
           <Route path="/about" element={<About />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </main>
       <Footer />

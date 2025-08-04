@@ -31,6 +31,9 @@ function Navbar() {
         <Link to="/about" style={{ color: '#fff', textDecoration: 'none', fontWeight: '500' }}>
           About
         </Link>
+        <Link to="/favorites" style={{ color: '#fff', textDecoration: 'none', fontWeight: '500' }}>
+        Favorites
+        </Link>
       </div>
     </nav>
   );
