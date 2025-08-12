@@ -4,7 +4,6 @@ function Favorites() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    // Get trusted shops list from localStorage
     const stored = JSON.parse(localStorage.getItem('trustedShops')) || [];
     setFavorites(stored);
   }, []);
